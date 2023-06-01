@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cajvyaqnyc8bu"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_1tr6s"]
+[ext_resource type="Texture2D" uid="uid://t6rd7eg1mqhv" path="res://art/enemyFlyingAlt_1.png" id="1_w56qc"]
+[ext_resource type="Texture2D" uid="uid://y21qc0007p7r" path="res://art/enemyFlyingAlt_2.png" id="2_yjxjs"]
+[ext_resource type="Texture2D" uid="uid://d12v7pjt0or8b" path="res://art/enemySwimming_1.png" id="3_7hut2"]
+[ext_resource type="Texture2D" uid="uid://be3lggjlen0bh" path="res://art/enemySwimming_2.png" id="4_xts0i"]
+[ext_resource type="Texture2D" uid="uid://uereltxr5eo8" path="res://art/enemyWalking_1.png" id="5_egwbn"]
+[ext_resource type="Texture2D" uid="uid://11dmnfw7i28n" path="res://art/enemyWalking_2.png" id="6_jrjtu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7j25b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w56qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yjxjs")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7hut2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xts0i")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_egwbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jrjtu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hvmv"]
+radius = 35.0
+height = 98.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_1tr6s")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_7j25b")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0hvmv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
